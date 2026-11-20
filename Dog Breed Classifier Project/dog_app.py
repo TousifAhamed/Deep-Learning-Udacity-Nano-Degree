@@ -563,7 +563,7 @@ model_scratch = train(35, loaders_scratch, model_scratch, optimizer_scratch,
                       criterion_scratch, use_cuda, 'model_scratch.pt')
 
 # load the model that got the best validation accuracy
-model_scratch.load_state_dict(torch.load('model_scratch.pt'))
+model_scratch.load_state_dict(torch.load('model_scratch.pt', weights_only=True))
 
 
 # ### (IMPLEMENTATION) Test the Model
@@ -695,7 +695,7 @@ model_transfer = train(30, loaders_scratch, model_transfer, optimizer_transfer,
 # load the model that got the best validation accuracy (uncomment the line below)
 #model_transfer.load_state_dict(torch.load('model_transfer.pt'))
 
-model_transfer.load_state_dict(torch.load('model_transfer.pt'))
+model_transfer.load_state_dict(torch.load('model_transfer.pt', weights_only=True))
 torch.save(model_transfer, 'Alomari.pt')
 
 
@@ -718,7 +718,7 @@ test(loaders_scratch, model_transfer, criterion_transfer, use_cuda)
 
 ### TODO: Write a function that takes a path to an image as input
 ### and returns the dog breed that is predicted by the model.
-model_transfer.load_state_dict(torch.load('model_transfer.pt'))
+model_transfer.load_state_dict(torch.load('model_transfer.pt', weights_only=True))
 # list of class names by index, i.e. a name can be accessed like class_names[0]
 class_names = [item[4:].replace("_", " ") for item in train_Loader.dataset.classes]
 
