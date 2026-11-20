@@ -19,7 +19,7 @@ def model_fn(model_dir):
     model_info = {}
     model_info_path = os.path.join(model_dir, 'model_info.pth')
     with open(model_info_path, 'rb') as f:
-        model_info = torch.load(f)
+        model_info = torch.load(f, weights_only=True)
 
     print("model_info: {}".format(model_info))
 
@@ -30,7 +30,7 @@ def model_fn(model_dir):
     # Load the stored model parameters.
     model_path = os.path.join(model_dir, 'model.pth')
     with open(model_path, 'rb') as f:
-        model.load_state_dict(torch.load(f))
+        model.load_state_dict(torch.load(f, weights_only=True))
 
     # Load the saved word_dict.
     word_dict_path = os.path.join(model_dir, 'word_dict.pkl')
